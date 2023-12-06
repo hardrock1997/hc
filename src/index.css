@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+:root {
+  --primary-color: #34c94b;
+  --black-color: #121212;
+  --white-color: #ffffff;
+  --red--color:#FF0000;
+}
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+html,
+body {
+  background-color: var(--black-color);
+  font-family:'Poppins', sans-serif;
+  line-height: 1.5;
+  color: var(--white-color);
+
+}
+
+input,
+button {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,h5,h6 {
+  overflow-wrap: break-word;
+}
