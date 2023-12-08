@@ -64,7 +64,6 @@ function MainContainer() {
                     booksCopy={booksCopy}
                     setBooksCopy={setBooksCopy}
                     book={book}
-                    setBook={setBook}
                 />}
                 />
         </Routes>

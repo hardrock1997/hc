@@ -7,7 +7,7 @@ import { useState } from 'react';
 import Edit from '../Edit/Edit';
 import {QRCodeSVG} from 'qrcode.react';
 
-function ViewBooks({toggleView,setToggleView,books,setBooks,booksCopy,setBooksCopy,book,setBook}) {
+function ViewBooks({toggleView,setToggleView,books,setBooks,booksCopy,setBooksCopy,book}) {
 const navigate = useNavigate();
 const [edit,setEdit] = useState(false)
 const [toggleDetailedView, setToggleDetailedView] = useState(false);
@@ -42,7 +42,7 @@ return (
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Qr Code</th>
+                        {!edit ? <th>Qr Code</th> : null}
                         <th>Book ISBN number</th>
                         <th>Category</th>
                         <th>Row number</th>
@@ -68,12 +68,18 @@ return (
                                             >
                                             {book.bookName}
                                             </td>
-                                            <td>
+
+                                           { 
+                                           !edit ? (
+                                           <td>
+                                             
                                                 <QRCodeSVG
                                                     size={40}
                                                     value={`${window.location.origin}/showbook/${book.id}/*`}
                                                 />
-                                            </td>
+                                           
+                                            </td>) :null
+                                           }
                                             <td>{book.isbn}</td>
                                             <td>{book.bookCategory}</td>
                                             <td>{book.rowNum}</td>
