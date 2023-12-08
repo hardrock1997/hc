@@ -4,6 +4,6 @@ export default function validate(book) {
         if(book[key]===null || book[key]==='') {
             return false;
         }
+        return true;
     }
-    return true;
 }

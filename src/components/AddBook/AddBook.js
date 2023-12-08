@@ -21,7 +21,6 @@ function AddBook({toggleView,setToggleView,book,setBook,setBooks,id,setId,setBoo
 
     function handleAdd() {
        const newAddition = {...book,id:id};
-       
        if(validate(newAddition)) {
             setBooks((prevBooks)=>{
                 return [...prevBooks,newAddition]
@@ -34,7 +33,7 @@ function AddBook({toggleView,setToggleView,book,setBook,setBooks,id,setId,setBoo
                 })
        }
        else {
-        setError('Fill all the fields!')
+        setError('Fill all the fields correctly!')
        }
     
     }

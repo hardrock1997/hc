@@ -2,22 +2,20 @@ import { useState } from "react";
 import validate from "../../utils/validation";
 
 function Edit({id,books,setBooks,setBooksCopy,b,setEdit}) {
-    
+ 
     const [book,setBook] = useState({
         bookName:b.bookName,
         isbn:b.isbn,
         bookCategory:b.bookCategory,
         rowNum:b.rowNum,
         bookCount:b.bookCount,
-        isEdit:false
+        isEdit:false,
+        id:b.id
     })
   
     function handleChange(e) {
         setBook(
-            {
-                ...book,
-                [e.target.name]:e.target.value
-            }
+            {...book,[e.target.name]:e.target.value}
         )
     }
 
@@ -57,6 +55,7 @@ function Edit({id,books,setBooks,setBooksCopy,b,setEdit}) {
             <td>
                <button onClick={()=>handleAddEditedValues(id)}>Okay</button>
             </td>
+
         </>
     )
 }

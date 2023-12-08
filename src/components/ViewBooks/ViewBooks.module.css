@@ -6,11 +6,10 @@
 .search {
     margin-top: 5px;
 }
-/* .actionButtonsWrapper {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-} */
+
 .table {
     border: 1px solid var(--white-color);
+}
+.bookName {
+    cursor: pointer;
 }

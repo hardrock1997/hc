@@ -1,5 +1,5 @@
 import styles from './MainContainer.module.css';
-import {useNavigate,Routes, Route,} from 'react-router-dom';
+import {useNavigate,Routes, Route} from 'react-router-dom';
 import AddBook from '../AddBook/AddBook';
 import ViewBooks from '../ViewBooks/ViewBooks';
 import { useState} from 'react';
@@ -20,12 +20,12 @@ function MainContainer() {
     const [booksCopy,setBooksCopy] = useState('');
 
     function navigateToAddBook() {
-        navigate('/admin');
+        navigate('/admin/*');
         setToggleView(!toggleView);
     }
 
     function navigateToViewBooks() {
-        navigate('/showadmin');
+        navigate('/showadmin/*');
         setToggleView(!toggleView);
     }
 
@@ -42,7 +42,7 @@ function MainContainer() {
         }
         <Routes>
                 <Route 
-                    path='/admin' 
+                    path='/admin/*' 
                     element={<AddBook 
                     toggleView={toggleView} 
                     setToggleView={setToggleView} 
@@ -55,7 +55,7 @@ function MainContainer() {
                 />}
                 />
                 <Route 
-                    path='/showadmin' 
+                    path='/showadmin/*' 
                     element={<ViewBooks 
                     toggleView={toggleView} 
                     setToggleView={setToggleView}
@@ -68,6 +68,7 @@ function MainContainer() {
                 />}
                 />
         </Routes>
+        
     </div>
     )
 }
