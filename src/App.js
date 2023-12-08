@@ -4,11 +4,9 @@ import { Routes, Route} from "react-router-dom";
 function App() {
   return (
     <div >
-      {/* <MainContainer/> */}
-
       <Routes>
-  <Route path="/*" element={<MainContainer />} />
-</Routes>
+        <Route path="/*" element={<MainContainer />} />
+      </Routes>
     </div>
   );
 }
