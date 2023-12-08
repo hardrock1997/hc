@@ -13,18 +13,19 @@ function MainContainer() {
         isbn:null,
         bookCategory:'',
         rowNum:null,
-        bookCount:null
+        bookCount:null,
+        isEdit:false
     })
     const [books,setBooks] = useState('');
     const [booksCopy,setBooksCopy] = useState('');
-    console.log(books,booksCopy);
+
     function navigateToAddBook() {
-        navigate('/admin/*');
+        navigate('/admin');
         setToggleView(!toggleView);
     }
 
     function navigateToViewBooks() {
-        navigate('/showadmin/*');
+        navigate('/showadmin');
         setToggleView(!toggleView);
     }
 
@@ -41,7 +42,7 @@ function MainContainer() {
         }
         <Routes>
                 <Route 
-                    path='/admin/*' 
+                    path='/admin' 
                     element={<AddBook 
                     toggleView={toggleView} 
                     setToggleView={setToggleView} 
@@ -54,7 +55,7 @@ function MainContainer() {
                 />}
                 />
                 <Route 
-                    path='/showadmin/*' 
+                    path='/showadmin' 
                     element={<ViewBooks 
                     toggleView={toggleView} 
                     setToggleView={setToggleView}
@@ -62,6 +63,8 @@ function MainContainer() {
                     setBooks={setBooks}
                     booksCopy={booksCopy}
                     setBooksCopy={setBooksCopy}
+                    book={book}
+                    setBook={setBook}
                 />}
                 />
         </Routes>

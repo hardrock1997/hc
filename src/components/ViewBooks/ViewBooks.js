@@ -5,25 +5,26 @@ import Search from '../Search/Search';
 import DetailedDisplay from '../DisplayBooks/DetailedDisplay';
 import AddBook from '../AddBook/AddBook';
 import ActionButtons from '../ActionButtons/ActionButtons';
+import { useState } from 'react';
+import Edit from '../Edit/Edit';
 
-function ViewBooks({toggleView,setToggleView,books,setBooks,booksCopy,setBooksCopy}) {
-    const navigate = useNavigate();
-   
+function ViewBooks({toggleView,setToggleView,books,setBooks,booksCopy,setBooksCopy,book,setBook}) {
+const navigate = useNavigate();
+const [edit,setEdit] = useState(false)
 
-    console.log(books)
+function handleBack() {
+    navigate('/');
+    setToggleView(!toggleView);
+}
+// function handleNavigationToDetailedDisplay(id) {
+//     navigate(`/showbook/${id}`);
+// }
+function handleAddBooks() {
+    navigate('/admin')
+}
 
-    function handleBack() {
-        navigate('/');
-        setToggleView(!toggleView);
-    }
-    // function handleNavigationToDetailedDisplay(id) {
-    //     navigate(`/showbook/${id}`);
-    // }
-    function handleAddBooks() {
-        navigate('/admin/*')
-    }
-    return (
-        <div className={styles.wrapper}>
+return (
+    <div className={styles.wrapper}>
       
         {
             books.length>0 ? (
@@ -43,27 +44,47 @@ function ViewBooks({toggleView,setToggleView,books,setBooks,booksCopy,setBooksCo
                 </tr>
             </thead>
             <tbody>
-                {
-                  books.map((book)=>{
-                        return (
-                            <tr 
+            {
+                books.map((book)=>{
+                    return (
+                        <tr 
                             key={book.id}
-                            // onClick={()=>handleNavigationToDetailedDisplay(book.id)
+                        //  onClick={()=>handleNavigationToDetailedDisplay(book.id)
                             // }
-                            >
-                                <td>{book.bookName}</td>
-                                <td>{book.isbn}</td>
-                                <td>{book.bookCategory}</td>
-                                <td>{book.rowNum}</td>
-                                <td>{book.bookCount}</td>
-                                <td>
-                                   <ActionButtons 
-                                    books={books} 
-                                    setBooks={setBooks} 
-                                    id={book.id} 
-                                    setBooksCopy={setBooksCopy}
-                                   />
-                                </td>
+                        >
+                            {
+                              book.isEdit===false ? 
+                                (
+                                       
+                                    <>
+                                        <td>{book.bookName}</td>
+                                        <td>{book.isbn}</td>
+                                        <td>{book.bookCategory}</td>
+                                        <td>{book.rowNum}</td>
+                                        <td>{book.bookCount}</td>
+                                        </>
+                                    
+                                    ) 
+                                    : <Edit
+                                        id={book.id}
+                                        books={books}
+                                        setBooks={setBooks}
+                                        setBooksCopy={setBooksCopy}
+                                        b={book}
+                                        setEdit={setEdit}
+                                        />
+                                }
+                                   <td key={book.id}>
+                                    <ActionButtons 
+                                        books={books} 
+                                        setBooks={setBooks} 
+                                        id={book.id} 
+                                        setBooksCopy={setBooksCopy}
+                            
+                                        edit={edit}
+                                        setEdit={setEdit}
+                                    />
+                                    </td>
                             </tr>
                         )
                     })
@@ -85,7 +106,7 @@ function ViewBooks({toggleView,setToggleView,books,setBooks,booksCopy,setBooksCo
         <Routes>
             <Route path='/admin' element={<MainContainer/>}/>
             <Route path='/showbook/:id' element={<DetailedDisplay />}/>
-            <Route path='/admin/*' element={<AddBook/>}/>
+            <Route path='/admin' element={<AddBook/>}/>
         </Routes>
         </div>
     )
