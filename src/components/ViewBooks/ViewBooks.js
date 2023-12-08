@@ -5,6 +5,7 @@ import DetailedDisplay from '../DisplayBooks/DetailedDisplay';
 import ActionButtons from '../ActionButtons/ActionButtons';
 import { useState } from 'react';
 import Edit from '../Edit/Edit';
+import {QRCodeSVG} from 'qrcode.react';
 
 function ViewBooks({toggleView,setToggleView,books,setBooks,booksCopy,setBooksCopy,book,setBook}) {
 const navigate = useNavigate();
@@ -41,6 +42,7 @@ return (
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Qr Code</th>
                         <th>Book ISBN number</th>
                         <th>Category</th>
                         <th>Row number</th>
@@ -65,6 +67,12 @@ return (
                                             className={styles.bookName}
                                             >
                                             {book.bookName}
+                                            </td>
+                                            <td>
+                                                <QRCodeSVG
+                                                    size={40}
+                                                    value={`${window.location.origin}/showbook/${book.id}/*`}
+                                                />
                                             </td>
                                             <td>{book.isbn}</td>
                                             <td>{book.bookCategory}</td>
@@ -118,6 +126,10 @@ return (
                     <DetailedDisplay 
                         books={books} 
                         setToggleDetailedView={setToggleDetailedView}
+                        qrcode={<QRCodeSVG
+                            size={100}
+                            value={`${window.location.origin}/showbook/${book.id}/*`}
+                        />}
                         />
                         }/>
                 </Routes>)
